@@ -1,0 +1,56 @@
+# Welcome to Sonic Pi
+
+use_bpm 126.1
+in_thread do
+  live_loop :drum_backing do
+    #with_fx :echo, phase: 0.5, mix: 0.4, decay: 8 do
+    #with_fx :distortion, distort: 0.75 do
+    sample :drum_snare_hard, cutoff: 93
+    sleep 1.5
+    sample :drum_heavy_kick, cutoff: 130, rate: 1
+    sleep 1
+    sample :drum_heavy_kick, cutoff: 85, rate: 1
+    sleep 0.75
+    #end
+    #end
+    #with_fx :echo, decay: 2 do
+    sample :drum_tom_lo_hard, cutoff: 130, rate: 1, amp: 0.25
+    sleep 0.4
+    sample :drum_tom_hi_soft, rate: 1, gain: 3
+    sleep 1
+    sample :drum_roll, finish: 0.05
+    sleep 0.35
+  end
+end
+
+live_loop :hi_hats do
+  sample :glitch_perc1, pitch: 0, amp: 0.00002
+  sleep 0.25
+  with_fx :bitcrusher, mix: 0.9, bits: 7.5 do
+    
+    sample :drum_cymbal_closed, amp: 0.3
+    sleep 0.5
+    sample :drum_cymbal_closed, amp: 0.3
+    sleep 0.25
+    sample :drum_cymbal_closed, amp: 0.3
+    sleep 0.25
+    sample :drum_cymbal_closed, amp: 0.3
+    sleep 0.5
+    sample :drum_cymbal_closed, amp: 0.3
+    sleep 0.25
+    sample :drum_cymbal_closed, amp: 0.3
+    sleep 0.25
+  end
+  with_fx :lpf do
+    
+    sample :drum_cymbal_closed, rate: 1, amp: 0.7
+    sleep 0.75
+    
+  end
+  with_fx :distortion, distort: 0.9999 do
+    sample :drum_cowbell, rate: 5, amp: 0.00007
+    sleep 1.25
+  end
+  sample :drum_cymbal_closed
+  sleep 0.75
+end

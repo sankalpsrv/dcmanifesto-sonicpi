@@ -1,0 +1,68 @@
+# Welcome to Sonic Pi
+use_bpm 77
+in_thread do
+  live_loop :kitk do
+    sample :drum_bass_hard
+    sleep 1
+    with_fx :echo, mix: 1 do
+      sample :drum_bass_soft
+      sleep 1
+    end
+    sleep 0.5
+    sample :drum_bass_soft
+    sleep 1.5
+  end
+end
+live_loop :snure do
+  with_fx :reverb do
+    sleep 1
+    sample :drum_snare_hard
+    sleep 2.5
+    sample :drum_snare_soft, amp: 2.4
+    sleep 0.5
+  end
+end
+
+live_loop :based do
+  use_synth :sine
+  with_fx :distortion, mix: 0.99 do
+    play (:G2)
+    sleep 0.5
+    sleep 0.5
+    play (:G3)
+    sleep 1.5
+    play (:Ab2)
+    sleep 1
+    play (:Ab3)
+    sleep 0.5
+  end
+end
+#begin
+live_loop :foo do
+  use_synth :saw
+  3.times do
+    play_chord chord(:Db3, :'halfdiminished')
+    sleep 2.5
+    play_chord chord(:Bb3, :'halfdiminished')
+    sleep 1.5
+  end
+  play_chord chord(:G4, :'+5')
+  sleep 2.5
+  play_chord chord(:Ab4, :'+5')
+  sleep 1.5
+end
+
+#begin
+live_loop :patric do
+  with_fx :bitcrusher, bits: 2.5 do
+    3.times do
+      play_pattern_timed [:g3, :db3, :bb4, :c4, :f4, :d4, :e4, :b3, :g4, :g4, :b3, :db3], [0.25, 0.25, 0.5]
+    end
+    with_fx :level, amp: 0.65 do
+      play_pattern_timed [:g4, :db4, :bb5, :c5, :f5, :d5, :e5, :b3, :g4, :g4, :g4], [0.25, 0.25, 0.5, 0.25, 0.25, 0.5, 0.25, 0.25, 0.5, 0.5, 0.5]
+    end
+  end
+  
+end
+
+

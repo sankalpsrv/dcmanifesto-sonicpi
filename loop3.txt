@@ -1,0 +1,65 @@
+# Welcome to Sonic Pi
+use_bpm 77
+#in_thread do
+live_loop :kik do
+  sample :drum_bass_hard
+  sleep 0.75
+  sample :drum_bass_soft
+  sleep 0.125
+  sleep 1.125
+  sample :drum_bass_hard
+  sleep 1
+  sleep 1
+end
+live_loop :scare do
+  with_fx :reverb do
+    sleep 1
+    sample :drum_snare_hard
+    sleep 1
+    sleep 1
+    sample :drum_roll, pitch_stretch: 1, window_size: 0.05, amp: 2.345
+    sleep 1
+  end
+end
+
+=begin
+  use_synth :mod_sine
+  4.times do
+    play_pattern [:d4, :db4, :b4, :ab4]
+ end
+
+live_loop :synzesise do
+  use_synth :kalimba
+  with_fx :level, amp: 5 do
+    3.times do
+      play_pattern_timed [:d4, :db4, :b4, :ab4], [0.25]
+    end
+    play_pattern_timed [:d4, :db4, :b4, :b4], [0.125, 0.125, 0.25, 0.5]
+  end
+end
+
+
+live_loop :basc do
+  use_synth :square
+  with_fx :distortion do
+    with_fx :level, amp: 0.125 do
+      with_fx :compressor do
+        3.times do
+          play_pattern_timed [:d2, :db2, :b2, :b3, :db2], [0.5, 0.5, 1, 0.5, 0.5]
+
+          sleep 1
+        end
+        play_pattern_timed [:db2, :gb2, :b2, :e2, :db2, :gb2, :b2, :gb3, :db3, :gb3, :b3, :e3], [0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25]
+
+        sleep 1
+
+      end
+    end
+  end
+end
+
+
+=end
+
+
+
